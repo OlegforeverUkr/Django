@@ -1,69 +1,69 @@
 from django.http import HttpRequest, HttpResponse
 
 
-def func_hello(response: HttpRequest) -> HttpResponse:
+def func_hello(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Hello Page')
 
 
-def func_empty(response: HttpRequest) -> HttpResponse:
+def func_empty(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Empty Page')
 
 
-def func_article(response: HttpRequest, article: str) -> HttpResponse:
+def article_detail_view(request: HttpRequest, article: str) -> HttpResponse:
     return HttpResponse(f'Page from article - {article}')
 
 
-def func_comment(response: HttpRequest, article: str) -> HttpResponse:
+def article_comment(request: HttpRequest, article: str) -> HttpResponse:
     return HttpResponse(f'Comment to article - {article}')
 
 
-def func_create(response: HttpRequest) -> HttpResponse:
+def article_create_view(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Create Page')
 
 
-def func_article_update(response: HttpRequest, article: str) -> HttpResponse:
+def article_update_view(request: HttpRequest, article: str) -> HttpResponse:
     return HttpResponse(f'Update to article - {article}')
 
 
-def func_article_delete(response: HttpRequest, article: str) -> HttpResponse:
+def article_delete_view(request: HttpRequest, article: str) -> HttpResponse:
     return HttpResponse(f'Delete to article - {article}')
 
 
-def func_topics(response: HttpRequest) -> HttpResponse:
+def topics(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Page with topics')
 
 
-def func_topics_subscribe(response: HttpRequest, topic: str) -> HttpResponse:
+def topics_subscribe(request: HttpRequest, topic: str) -> HttpResponse:
     return HttpResponse(f'Subscribe on topic - {topic}')
 
 
-def func_topics_unsubscribe(response: HttpRequest, topic: str) -> HttpResponse:
+def topics_unsubscribe(request: HttpRequest, topic: str) -> HttpResponse:
     return HttpResponse(f'Unsubscribe on topic - {topic}')
 
 
-def func_profile(response: HttpRequest, username: str) -> HttpResponse:
+def profile_user(request: HttpRequest, username: str) -> HttpResponse:
     return HttpResponse(f'Profile - {username}')
 
 
-def func_set_password(response: HttpRequest) -> HttpResponse:
+def set_password(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Page set password')
 
 
-def func_set_userdata(response: HttpRequest) -> HttpResponse:
+def set_userdata(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Page userdata')
 
 
-def func_deactivate(response: HttpRequest) -> HttpResponse:
+def deactivate(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Page deactivate')
 
 
-def func_register(response: HttpRequest) -> HttpResponse:
+def register(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Page register')
 
 
-def func_login(response: HttpRequest) -> HttpResponse:
+def login(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Page login')
 
 
-def func_logout(response: HttpRequest) -> HttpResponse:
+def logout(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Page logout')
