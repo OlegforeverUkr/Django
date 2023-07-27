@@ -5,5 +5,21 @@
 /.env/
 /Env/
 /Venv/
-/db.sqlite3
-/MyBlog/__pycache__/
+
+# python byte-compiled
+__pycache__
+
+# ide configs
+/.vscode/
+/.idea/
+
+
+# local databases
+pgdata/
+pgsql/
+*.sqlite3
+*.db
+
+# static files storage
+/static/*
+!/static/index.html

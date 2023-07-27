@@ -1,11 +1,11 @@
 from django.http import HttpRequest, HttpResponse
 
 
-def func_hello(request: HttpRequest) -> HttpResponse:
+def hello_view(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Hello Page')
 
 
-def func_empty(request: HttpRequest) -> HttpResponse:
+def empty_view(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Empty Page')
 
 

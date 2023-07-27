@@ -23,8 +23,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', views.func_hello),
-    path('', views.func_empty),
+    path('hello/', views.hello_view),
+    path('', views.empty_view),
     path('<article>/comment/', views.article_comment),
     path('create/', views.article_create_view),
     path('<article>/update/', views.article_update_view),
