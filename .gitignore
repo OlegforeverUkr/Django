@@ -1,0 +1,9 @@
+# virtual environment
+/venv/
+/env/
+/.venv/
+/.env/
+/Env/
+/Venv/
+/db.sqlite3
+/MyBlog/__pycache__/
