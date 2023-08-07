@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 
 
 UserModel = get_user_model()
@@ -22,6 +21,7 @@ class Article(models.Model):
 
     topics = models.ManyToManyField(Topic)
     author = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
+    likes = models.ManyToManyField(UserModel, related_name='liked_articles', blank=True)
 
     def __str__(self):
         return self.title_article

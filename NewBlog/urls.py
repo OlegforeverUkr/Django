@@ -40,4 +40,5 @@ urlpatterns = [
     path('login/', views.login),
     path('logout/', views.logout),
     path('<article>/', views.article_detail_view),
+    path('likes-by-user/<int:user_id>/', views.ordered_articles_by_likes),
 ]
