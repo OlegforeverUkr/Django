@@ -12,15 +12,14 @@ def empty_view(request: HttpRequest) -> HttpResponse:
     return HttpResponse(''.join(article.title for article in articles))
 
 
-def article_detail_view(request: HttpRequest, article: str) -> HttpResponse:
+def article_detail_view(request: HttpRequest, article_id: int) -> HttpResponse:
 
     try:
-        article_single = Article.objects.get(id=article)
+        article_single = Article.objects.get(id=article_id)
         comments = Comment.objects.filter(article=article_single)
     except Article.DoesNotExist:
         raise Http404('Article does not exist')
-    except Article.MultipleObjectsReturned:
-        raise Http404('More than one article on this id')
+
 
     comments_text = [comment.text_comment for comment in comments]
 
@@ -68,8 +67,6 @@ def profile_user(request: HttpRequest, username: str) -> HttpResponse:
         articles = Article.objects.filter(author=user)
     except UserModel.DoesNotExist:
         raise Http404('User does not exist')
-    except UserModel.MultipleObjectsReturned:
-        raise Http404('More than one user on this username')
 
     articles_list = [article.title_article for article in articles]
 
@@ -106,9 +103,10 @@ def logout(request: HttpRequest) -> HttpResponse:
 
 
 def ordered_articles_by_likes(request: HttpRequest, user_id: int) -> HttpResponse:
-    articles = sorted_articles(user_id)
-    if articles is None:
-        raise Http404('User with this id is not found')
-    return articles
+    try:
+        user = UserModel.objects.get(id=user_id)
+        articles = sorted_articles(user)
+        return articles
+    except UserModel.DoesNotExist:
+        raise Http404('User does not exist')
     
-
