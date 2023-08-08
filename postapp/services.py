@@ -1,18 +1,10 @@
-from .models import Article, UserModel
+from .models import Article
+from django.db.models import Count
 
 
-def sorted_articles(user_id):
-    try:
-        user = UserModel.objects.get(id=user_id)
-        liked_articles = Article.objects.filter(likes=user)
-        ordered_articles = liked_articles.order_by('-likes__count')
-        articles_titles = [article.title_article for article in ordered_articles]
+def sorted_articles(user):
+    annotated_articles = Article.objects.annotate(prefer_topics=Count('topics', topics__users=user))
 
-        return articles_titles
+    sorted_articles = annotated_articles.order_by('-prefer_topics', '-created_date')
 
-    except UserModel.DoesNotExist:
-        defult_ordering = Article.objects.order_by('-likes__count')
-        defult_articles = [article.title_article for article in defult_ordering]
-        return defult_articles
-
-    
+    return sorted_articles
