@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 
 
 UserModel = get_user_model()
@@ -16,12 +15,13 @@ class Topic(models.Model):
 class Article(models.Model):
     title_article = models.CharField(max_length=255, default='Insert your text')
     text_article = models.TextField(default='Insert your text')
-    created_date = models.DateTimeField(auto_now_add=True)
-    updated_date = models.DateTimeField(auto_now=True)
+    created_date = models.DateField(auto_now_add=True)
+    updated_date = models.DateField(auto_now=True)
 
 
     topics = models.ManyToManyField(Topic)
     author = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
+
 
     def __str__(self):
         return self.title_article
@@ -29,7 +29,7 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
-    created_date_comment = models.DateTimeField(auto_now_add=True)
+    created_date_comment = models.DateField(auto_now_add=True)
     text_comment = models.TextField()
 
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
