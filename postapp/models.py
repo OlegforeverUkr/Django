@@ -10,6 +10,8 @@ class Topic(models.Model):
     topic_description = models.CharField(max_length=255)
     users = models.ManyToManyField(UserModel, through='UserTopicRelation')
 
+    def __str__(self):
+        return self.topic_name
 
 
 class Article(models.Model):
