@@ -32,6 +32,16 @@
             
         }
 
+        .content {
+            text-align: center;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
     </style>
 </head>
 <body>
@@ -39,8 +49,8 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand text-center" href="{% url 'postapp:home-page'%}">Home</a>
-            <a class="navbar-brand text-center" href="{% url 'postapp:config' username=user.username%}">Config</a>
-            <a class="navbar-brand text-center" href="{% url 'postapp:profile-user' username=user.username%}">User parametres</a>
+            <a class="navbar-brand text-center" href="{% url 'postapp:config' username=user%}">Config</a>
+            <a class="navbar-brand text-center" href="{% url 'postapp:profile-user' username=user%}">User parametres</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

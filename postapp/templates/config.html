@@ -12,10 +12,36 @@
         <div class="card-body">
             <h2>User Settings</h2>
             <form>
+                <h3>User Articles</h3>
+                <div>
+                    {% for article in articles_user %}
+                        <p><a href="{% url 'postapp:article-id' article_id=article.id %}">{{ article.title_article }}</a></p>
+                    {% endfor %}
+                </div>
+                <h3>User Prefer Articles</h3>
+                <div>
+                    {% for article in articles %}
+                        <p><a href="{% url 'postapp:article-id' article_id=article.id %}">{{ article.title_article }}</a></p>
+                    {% endfor %}
+                </div>
+                
+                <h3>Subscribed Topics</h3>
+                <div>
+                    {% for topic in topics %}
+                        <label class="form-check-label" for="topicCheckbox_{{ topic.id }}">
+                            <input type="checkbox" class="form-check-input" id="topicCheckbox_{{ topic.id }}"
+                                   name="subscribe_topics" value="{{ topic.id }}"
+                                   {% if topic.id in subscribed_topics %}checked{% endif %}>
+                            {{ topic.topic_name }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="subscribeCheckbox">
                     <label class="form-check-label" for="subscribeCheckbox">Subscribe to newsletter for priority topics</label>
                 </div>
+
                 <div class="mt-4">
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </div>
@@ -25,4 +51,3 @@
 </main>
 
 {% endblock %}
-

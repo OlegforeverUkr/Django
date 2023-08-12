@@ -88,18 +88,11 @@ def profile_user(request: HttpRequest, username: str) -> HttpResponse:
 
     try:
         user = UserModel.objects.get(username=username)
-        articles = Article.objects.filter(author=user)
-        articles_on_preferred_topics = ordered_articles_by_likes(user.id)
     except UserModel.DoesNotExist:
         raise Http404('User does not exist')
 
-    articles_list = [article.title_article for article in articles]
-    sorted_articles = [article.title_article for article in articles_on_preferred_topics]
-
     response = {
-        'user': user.username,
-        'articles': articles_list,
-        'sorted_articles': sorted_articles
+        'user': user,
     }
 
     return render(request, 'profile_user.html', response)
@@ -152,7 +145,7 @@ def config(request: HttpRequest, username: str) -> HttpResponse:
 
 
     response = {
-        'user': user,
+        'user': user.username,
         'articles_user': articles,
         'articles': articles_on_preferred_topics,
     }

@@ -22,5 +22,5 @@ urlpatterns = [
     path('<int:article_id>/', views.article_detail_view, name='article-id'),
     path('likes-by-user/<int:user_id>/', views.ordered_articles_by_likes, name='likes-by-user'),
     path('about/', views.about_view, name='about'),
-    path('cofig/<str:username>/', views.config, name='config'),
+    path('config/<str:username>/', views.config, name='config'),
     ]
