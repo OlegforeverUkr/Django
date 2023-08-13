@@ -6,13 +6,16 @@
 
 {% block content %}
 <main class="container">
-  <div class="row">
+  <div class="content">
     <section class="col-md-9" role="main">
       <div class="h4 fst-italic mt-5">Delete Form</div>
         <div>
-          <label for="title" class="form-label" style="font-size: 30px;">Are you sure you want to delete " {{ article_title }} " article?</label>
+          <label for="title" class="form-label" style="font-size: 30px;">Are you sure you want to delete "{{ article_title }}" article?</label>
         </div>
-      <button class="btn btn-danger" style="margin-top: 12px">Delete</button>
+      <div class="d-grid gap-2 mt-3">
+        <button class="btn btn-danger" type="submit">Delete</button>
+        <a href="{% url 'postapp:home-page' %}" class="btn btn-secondary">No</a>
+      </div>
     </section>
   </div>
 </main>

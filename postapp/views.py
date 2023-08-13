@@ -1,8 +1,12 @@
-from django.http import HttpRequest, HttpResponse, Http404
+from django.http import HttpRequest, HttpResponse, Http404, HttpResponseRedirect
 from .models import  Article, Comment, UserModel, Topic
+from .forms import UserLoginForm, UserRegistrationForm
 from .services import sorted_articles
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
+from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
 
 
 @login_required
@@ -110,16 +114,43 @@ def deactivate(request: HttpRequest) -> HttpResponse:
     return HttpResponse('Page deactivate')
 
 
+
 def register(request: HttpRequest) -> HttpResponse:
-    return render(request,'register_page.html')
+    if request.method =='POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.create_user()
+
+            url = reverse('postapp:login')
+            return HttpResponseRedirect(url)
+    else:
+        form = UserRegistrationForm()
+
+    return render(request, 'register_page.html', {'form':form})
 
 
-def login(request: HttpRequest) -> HttpResponse:
-    return render(request, 'login.html')
+@require_http_methods(['POST', 'GET'])
+def login_user(request: HttpRequest) -> HttpResponse:
+
+    if request.method =='POST':
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(**form.cleaned_data)
+            login(request, user)
+
+            url = reverse('postapp:home-page')
+            return HttpResponseRedirect(url)
+
+    else:
+        form = UserLoginForm()
+
+    return render(request, 'login.html', {'form':form})
 
 
-def logout(request: HttpRequest) -> HttpResponse:
-    return render(request, 'logout.html')
+def logout_user(request: HttpRequest) -> HttpResponse:
+    logout(request)
+    url = reverse('postapp:login')
+    return HttpResponseRedirect(url)
 
 
 def ordered_articles_by_likes(user_id: int):
