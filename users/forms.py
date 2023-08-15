@@ -60,6 +60,7 @@ class UserRegistrationForm(forms.Form):
         del self.cleaned_data['confirm_password']
         UserModel.objects.create_user(**self.cleaned_data)
 
+
     def clean_username(self):
         username = self.cleaned_data['username']
         try:

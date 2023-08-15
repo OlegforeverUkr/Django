@@ -3,7 +3,7 @@
 {% load posts_tags %}
 {% get_topics as topics %}
 
-{% block title %} Update | Blog {% endblock %}
+{% block title %} Update {% endblock %}
 
 {% block content %}
     <div class="container">
@@ -12,7 +12,7 @@
                 <h2><em>Update Article</em></h2>
                 <form>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1"  value="{{ article_title }}">
+                        <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1"  value="{{ article_single.title_article }}">
                     </div>
 
                     <div>
@@ -26,7 +26,7 @@
                                             
                     <div class="input-group mb-5">
                         <span class="input-group-text">Insert your text</span>
-                        <textarea class="form-control" aria-label="Textarea">{{article_text}}</textarea>
+                        <textarea class="form-control" aria-label="Textarea">{{article_single.text_article}}</textarea>
                     </div>
                 </form>
             </div>
