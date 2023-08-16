@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} All Topics {% endblock %}
+
+
+{% block content %}
+<div class="page-container mt-5">
+    <h1 style="color: white; font-style: italic;">Blog Topics</h1>
+        {% for topic in all_topics %}
+        <div class="content">
+            <h2><a href="{% url 'postapp:topic-subscribe' topic.topic_name %}">{{ topic.topic_name }}</a></h2>
+            <ul class="article-list">
+                {% for article in all_articles %}
+                    {% if topic in article.topics.all %}
+                    <li><a href="{% url 'postapp:article-id' article_id=article.id %}">{{ article.title_article }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}
