@@ -28,6 +28,10 @@
                         <span class="input-group-text">Insert your text</span>
                         <textarea class="form-control" aria-label="Textarea">{{article_single.text_article}}</textarea>
                     </div>
+                    <div class='mb-5'>
+                        <button type="submit" class="btn btn-primary">Update article</button>
+                        <a href="{% url 'postapp:home-page' %}" class="btn btn-danger">Cancel</a>
+                    </div>
                 </form>
             </div>
         </div>

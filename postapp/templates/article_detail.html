@@ -14,11 +14,12 @@
             <p class="card-text">Author - {{ article_single.author }}</p>
             <p class="card-text">Related Topics: {{ article_single.topics.all|join:", " }}</p>
             <p class="card-text">{{ article_single.text_article }}</p>
+            {% if user.is_authenticated %}
             <div>
                 <a href="{% url 'postapp:article-update' article_id=article_single.id %}" class="btn btn-primary">Update article</a>
                 <a href="{% url 'postapp:article-delete' article_id=article_single.id %}" class="btn btn-danger">Delete article</a>
             </div>
-            
+            {% endif %}
             <div class="comments mt-4">
                 {% for comment in comments %}
                 <div class="comment card mb-3">

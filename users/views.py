@@ -6,9 +6,11 @@ from postapp.services import sorted_articles
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 
 
+@login_required
 def profile_user(request: HttpRequest, username: str) -> HttpResponse:
 
     try:
@@ -23,6 +25,7 @@ def profile_user(request: HttpRequest, username: str) -> HttpResponse:
     return render(request, 'profile_user.html', response)
 
 
+@login_required
 def user_page(request: HttpRequest, username: str) -> HttpResponse:
     try:
         user = UserModel.objects.get(username=username)
