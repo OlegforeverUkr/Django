@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Subscribe | Topic {% endblock %}
+
+{% block content %}
+
+<main class="container">
+  <div class="card mt-5 mb-5">
+    <div class="card-body mt-5">
+      <section class="col-md-9" role="main">
+        <div class="h4 fst-italic">Subscribe form</div>
+          <h2>{{ topic.topic_name }}</h2>
+          <p>{{ topic.topic_description }}</p>
+        <button class="btn btn-success" style="margin-top: 12px">Subscribe</button>
+        <hr class="mt-4">
+
+        <h3>Related Articles</h3>
+        <ul>
+          {% for article in related_articles %}
+            <li><a href="{% url 'postapp:article-id' article.id %}">{{ article.title_article }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

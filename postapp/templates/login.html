@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load posts_tags %}
+{% get_topics as topics %}
+
+{% block title %} Login | Blog {% endblock %}
+
+{% block content %}
+
+<main class="container mt-4 mb-5">
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div class="mb-5">
+                    <label class="form-label">User Name</label>
+                    <input type="username" class="form-control form-control-xs" aria-describedby="emailHelp">
+                    <div id="username" class="form-text">Insert your username.</div>
+                </div>
+                <div class="mb-5">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control form-control-xs" id="exampleInputPassword1">
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

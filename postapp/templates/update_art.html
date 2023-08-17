@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load posts_tags %}
+{% get_topics as topics %}
+
+{% block title %} Update | Blog {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 form-block mt-4">
+                <h2><em>Update Article</em></h2>
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1"  value="{{ article_title }}">
+                    </div>
+
+                    <div>
+                        <label for="category" class="form-label">Category</label>
+                        <select name="category" id="category" class="form-select mb-5" data-live-search="true" multiple="" style="color: black;">
+                          {% for topic in topics %}
+                            <option value={{topic.option_value}}>{{ topic.topic_name }}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+                                            
+                    <div class="input-group mb-5">
+                        <span class="input-group-text">Insert your text</span>
+                        <textarea class="form-control" aria-label="Textarea">{{article_text}}</textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
